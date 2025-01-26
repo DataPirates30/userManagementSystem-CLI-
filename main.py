@@ -1,6 +1,12 @@
 from database import  create_user, get_all_users, update_user, delete_user
 from file_handling import log_activity
-
+def errorHandler():
+    while True:
+        try:
+            age = int(input("Enter age: "))
+            return age
+        except ValueError:
+            print("Invalid age! Age should be an integer.")
 def main():
     while True: 
         print("\nWelcome to User Management System!")
@@ -14,7 +20,7 @@ def main():
         if choice == "1":
             name = input("Enter name: ")
             email = input("Enter email: ")
-            age = int(input("Enter age: "))
+            age = errorHandler()
             create_user(name, email, age)
             print("User created successfully!")
         
@@ -28,10 +34,15 @@ def main():
                 print("No users found!")
         
         elif choice == "3":
-            id = int(input("Enter user ID: "))
+            while True:
+                try:
+                    id = int(input("Enter user ID: "))
+                    break
+                except ValueError:
+                    print("Invalid ID! ID should be an integer.")
             name = input("Enter name: ")
             email = input("Enter email: ")
-            age = int(input("Enter age: "))
+            age = errorHandler()
             update_user(id, name, email, age)
             print("User updated successfully!")
         
@@ -48,3 +59,7 @@ def main():
 
 if  __name__ == "__main__":
     main()
+
+
+            
+        
